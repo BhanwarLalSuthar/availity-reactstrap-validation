@@ -1,5 +1,5 @@
 {
-  "name": "availity-reactstrap-validation",
+  "name": "@bhanwarlalsuthar/availity-reactstrap-validation",
   "version": "3.0.0",
   "author": "Bhanwar Lal Suthar <your.email@example.com>",
   "description": "Form validation helpers for reactstrap",
