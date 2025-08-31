@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { FormGroup } from 'reactstrap';
@@ -31,7 +31,7 @@ export default class AvGroup extends Component {
     return {
       Group: {
         getInput: () => this.state.input,
-        getInputState: ::this.getInputState,
+        getInputState: this.getInputState.bind(this),
       },
       FormCtrl: this.FormCtrl,
     };

@@ -1,14 +1,55 @@
 {
-  "extends" : "eslint-config-availity/react",
-  "rules": {
-    "semi" : [2, "always"],
-    "no-unused-vars": ["error", { "varsIgnorePattern": "^(unused|omit)" }],
-    "comma-dangle": [2, "always-multiline"]
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
+    },
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "semi": ["error", "always"],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^(unused|omit)" }],
+    "comma-dangle": ["error", "always-multiline"],
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "react/jsx-uses-vars": "error",
+    "import/order": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-find-dom-node": "warn",
+    "no-prototype-builtins": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
   }
 }

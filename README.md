@@ -1,69 +1,102 @@
-[![Build Status](https://travis-ci.org/Availity/availity-reactstrap-validation.svg?branch=master)](https://travis-ci.org/Availity/availity-reactstrap-validation) [![Coverage Status](https://coveralls.io/repos/github/Availity/availity-reactstrap-validation/badge.svg?branch=master)](https://coveralls.io/github/Availity/availity-reactstrap-validation?branch=master)
+# Availity Reactstrap Validation
 
-# availity-reactstrap-validation
+[![npm version](https://badge.fury.io/js/availity-reactstrap-validation.svg)](https://badge.fury.io/js/availity-reactstrap-validation)
+[![Build Status](https://github.com/Availity/availity-reactstrap-validation/workflows/CI/badge.svg)](https://github.com/Availity/availity-reactstrap-validation/actions)
+[![Coverage Status](https://coveralls.io/repos/github/Availity/availity-reactstrap-validation/badge.svg?branch=master)](https://coveralls.io/github/Availity/availity-reactstrap-validation?branch=master)
 
-Easy to use React validation components compatible for reactstrap.
+Form validation helpers for Reactstrap components with React 18+ support.
 
-## Important Update - 4th January, 2021
+## 🚀 Features
 
-This library has been **depreciated** in the favour of [another one](https://availity.github.io/availity-react/form/index). Please, plan your next projects and update your previous ones accordingly. 
-[This Guide](https://availity.github.io/availity-react/form/migrating) might be useful for you in order to migrate to the new library.
+- **React 18+ Compatible**: Built with modern React patterns and hooks support
+- **TypeScript Support**: Full TypeScript definitions included
+- **Modern JavaScript**: ES2020+ features with proper polyfills
+- **Accessibility**: Built with accessibility in mind
+- **Flexible Validation**: Multiple validation strategies and custom validators
+- **Bootstrap 5**: Compatible with Bootstrap 5 and Reactstrap 9+
 
-## Installation
+## 📦 Installation
 
-Install `availity-reactstrap-validation` and `reactstrap` via NPM
-
-```sh
-npm install --save availity-reactstrap-validation reactstrap
+```bash
+npm install availity-reactstrap-validation
+# or
+yarn add availity-reactstrap-validation
 ```
 
-If applicable, install a `Promise` polyfill.  For example:
+## 🔧 Requirements
 
-```sh
-npm install es6-promise --save
+- **Node.js**: 20.0.0 or higher
+- **React**: 18.0.0 or higher
+- **Reactstrap**: 9.0.0 or higher
+- **Bootstrap**: 5.0.0 or higher
+
+## 🚀 Quick Start
+
+```jsx
+import React from 'react';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
+import { Button } from 'reactstrap';
+
+function MyForm() {
+  const handleValidSubmit = (event, values) => {
+    console.log('Form submitted successfully:', values);
+  };
+
+  const handleInvalidSubmit = (event, errors, values) => {
+    console.log('Form has errors:', errors);
+  };
+
+  return (
+    <AvForm onValidSubmit={handleValidSubmit} onInvalidSubmit={handleInvalidSubmit}>
+      <AvField
+        name="email"
+        label="Email"
+        type="email"
+        validate={{
+          required: { value: true, errorMessage: 'Email is required' },
+          email: { value: true, errorMessage: 'Please enter a valid email' }
+        }}
+      />
+      <Button type="submit">Submit</Button>
+    </AvForm>
+  );
+}
 ```
 
-The polyfill can be applied into your web application by using tools like Webpack or Babel.
+## 📚 Documentation
 
-Import the components you need, example:
+Visit our [documentation site](https://availity.github.io/availity-reactstrap-validation/) for comprehensive examples and API reference.
 
-```js
-import { AvField } from 'availity-reactstrap-validation';
-```
+## 🔄 Migration from v2
 
-## Development
+This is a major version update with breaking changes:
 
-Install dependencies:
+- **React 18+ required** (was React 16.8+)
+- **Node 20+ required** (was Node 5+)
+- **Bootstrap 5+ required** (was Bootstrap 4)
+- **Reactstrap 9+ required** (was Reactstrap 6+)
 
-```sh
-npm install
-```
+### Key Changes
 
-Run examples at [http://localhost:8080/](http://localhost:8080/) with Webpack dev server:
+1. **Lifecycle Methods**: Replaced deprecated `componentWillMount` and `componentWillReceiveProps` with modern alternatives
+2. **Modern Build System**: Updated to Webpack 5, Babel 7, and modern tooling
+3. **TypeScript Support**: Added comprehensive TypeScript definitions
+4. **ES Modules**: Added ES module build for tree-shaking support
 
-```sh
-npm start
-```
+## 🤝 Contributing
 
-Run tests:
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-```sh
-npm test
-```
+## 📄 License
 
-Run tests & coverage report:
+MIT License - see [LICENSE](LICENSE) file for details.
 
-```sh
-npm run test:coverage
-```
+## 🆘 Support
 
-Watch tests:
+- **Issues**: [GitHub Issues](https://github.com/Availity/availity-reactstrap-validation/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Availity/availity-reactstrap-validation/discussions)
+- **Documentation**: [Documentation Site](https://availity.github.io/availity-reactstrap-validation/)
 
-```sh
-npm run test:watch
-```
+## 🙏 Acknowledgments
 
-## Disclaimer
-Open source software components distributed or made available in the Availity Materials are licensed to Company under the terms of the applicable open source license agreements, which may be found in text files included in the Availity Materials.
-
-## LICENSE [MIT](LICENSE)
+Built with ❤️ by the [Availity](https://availity.com) team.

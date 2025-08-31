@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import find from 'lodash/find';
-import {Input, FormGroup, Label, CustomInput} from 'reactstrap';
+import {Input, FormGroup, Label} from 'reactstrap';
 import AvInput from './AvInput';
 
-const checkPropTypes = Object.assign({}, AvInput.propTypes, {customInput: PropTypes.bool});
+const checkPropTypes = Object.assign({}, AvInput.propTypes);
 delete checkPropTypes.name;
 
 export default class AvCheckbox extends Component {
@@ -39,7 +39,6 @@ export default class AvCheckbox extends Component {
     const {
       className,
       id,
-      customInput,
       ...attributes} = this.props;
 
     const groupProps = this.context.Group.getProps();
@@ -64,23 +63,7 @@ export default class AvCheckbox extends Component {
       attributes.disabled = attributes.disabled || this.context.FormCtrl.isReadOnly();
     }
 
-    if (customInput) {
-      return (
-        <CustomInput
-          name={groupProps.name}
-          type='checkbox'
-          {...attributes}
-          inline={groupProps.inline}
-          id={id || `checkbox-${groupProps.name}-${this.props.value}`}
-          className={classes}
-          onChange={this.onChangeHandler}
-          value={this.props.value && this.props.value.toString()}
-          defaultChecked={this.isDefaultChecked(groupProps.value)}
-          required={groupProps.required}
-          label={this.props.label}
-        />
-      );
-    }
+
 
     return (
       <FormGroup check inline={groupProps.inline} disabled={attributes.disabled || attributes.readOnly}>

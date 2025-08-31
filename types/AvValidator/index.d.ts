@@ -1,0 +1,42 @@
+declare namespace _default {
+    export { date };
+    export { date as datetime };
+    export { dateRange };
+    export { email };
+    export { match };
+    export { max };
+    export { maxlength };
+    export { maxlength as maxLength };
+    export { maxchecked as maxChecked };
+    export { min };
+    export { minlength };
+    export { minlength as minLength };
+    export { minchecked as minChecked };
+    export { number };
+    export { npi };
+    export { pattern };
+    export { phone };
+    export { phone as tel };
+    export { required };
+    export { step };
+    export { url };
+}
+export default _default;
+import date from './date';
+import dateRange from './dateRange';
+import email from './email';
+import match from './match';
+import max from './max';
+import maxlength from './maxlength';
+import maxchecked from './maxchecked';
+import min from './min';
+import minlength from './minlength';
+import minchecked from './minchecked';
+import number from './number';
+import npi from './npi';
+import pattern from './pattern';
+import phone from './phone';
+import required from './required';
+import step from './step';
+import url from './url';
+//# sourceMappingURL=index.d.ts.map

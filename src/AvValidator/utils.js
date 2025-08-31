@@ -1,6 +1,5 @@
 import isString from 'lodash/isString';
 import isUndefined from 'lodash/isUndefined';
-/* global document */
 export const isoDateFormat = 'YYYY-MM-DD';
 
 export function isEmpty(value) {
@@ -22,7 +21,7 @@ if (typeof document !== 'undefined' && typeof document.createElement === 'functi
   const tester = document.createElement('input');
 
   for (const i in inputType) {
-    if (inputType.hasOwnProperty(i)) {
+    if (Object.prototype.hasOwnProperty.call(inputType, i)) {
       tester.setAttribute('type', i);
       tester.value = ':(';
 

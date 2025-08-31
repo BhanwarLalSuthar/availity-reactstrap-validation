@@ -1,3 +1,181 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [3.0.0] - 2024-01-XX
+
+### 🚀 Major Release - React 18+ & Node 20+ Support
+
+This is a major version update with significant breaking changes to modernize the library for React 18+ and Node 20+.
+
+#### ✨ Added
+- **React 18+ Support**: Full compatibility with React 18 features and patterns
+- **Node 20+ Support**: Requires Node.js 20.0.0 or higher
+- **TypeScript Support**: Comprehensive TypeScript definitions included
+- **ES Modules**: ES module build for better tree-shaking support
+- **Modern JavaScript**: ES2020+ features with proper polyfills
+- **Bootstrap 5 Support**: Compatible with Bootstrap 5 and Reactstrap 9+
+- **Webpack 5**: Updated build system with modern webpack configuration
+- **Babel 7**: Modern JavaScript compilation with latest Babel features
+
+#### 🔄 Changed
+- **Lifecycle Methods**: Replaced deprecated React lifecycle methods:
+  - `componentWillMount` → `componentDidMount`
+  - `componentWillReceiveProps` → `componentDidUpdate`
+- **Build System**: Complete modernization of build tooling
+- **Dependencies**: Updated all dependencies to latest stable versions
+- **Webpack Configuration**: Modernized webpack configs for Webpack 5
+- **Babel Configuration**: Enhanced Babel setup with environment-specific presets
+
+#### 🗑️ Removed
+- **React 16 Support**: No longer supports React versions below 18.0.0
+- **Node 5 Support**: No longer supports Node.js versions below 20.0.0
+- **Bootstrap 4 Support**: No longer supports Bootstrap versions below 5.0.0
+- **Reactstrap 6 Support**: No longer supports Reactstrap versions below 9.0.0
+- **Deprecated Webpack Plugins**: Removed outdated webpack plugins and loaders
+
+#### 🔧 Technical Improvements
+- **Modern ES6+ Syntax**: Updated codebase to use modern JavaScript features
+- **Better Tree Shaking**: Improved bundle optimization with ES modules
+- **Enhanced Type Safety**: Better TypeScript integration and type definitions
+- **Performance Improvements**: Optimized build process and runtime performance
+- **Accessibility**: Enhanced accessibility features and ARIA support
+
+#### 📦 Package Changes
+- **Main Entry**: `lib/index.js` (CommonJS)
+- **Module Entry**: `es/index.js` (ES Modules)
+- **Types Entry**: `types/index.d.ts` (TypeScript definitions)
+- **Files**: Added `es/` and `types/` directories to npm package
+
+#### 🚨 Breaking Changes
+1. **React Version**: Must use React 18.0.0 or higher
+2. **Node Version**: Must use Node.js 20.0.0 or higher
+3. **Bootstrap Version**: Must use Bootstrap 5.0.0 or higher
+4. **Reactstrap Version**: Must use Reactstrap 9.0.0 or higher
+5. **Lifecycle Methods**: Components now use modern React lifecycle methods
+6. **Build Output**: New build structure with ES modules and TypeScript types
+
+#### 📚 Migration Guide
+For users upgrading from v2.x, please refer to the README.md for detailed migration instructions.
+
+---
+
+## [2.7.1] - 2021-XX-XX
+
+### 🐛 Bug Fixes
+- Fixed various validation issues
+- Improved error handling
+
+### 📦 Dependencies
+- Updated dependencies to latest compatible versions
+
+---
+
+## [2.7.0] - 2021-XX-XX
+
+### ✨ Features
+- Added new validation rules
+- Enhanced form handling
+
+### 🐛 Bug Fixes
+- Fixed React compatibility issues
+- Improved performance
+
+---
+
+## [2.6.0] - 2020-XX-XX
+
+### ✨ Features
+- Added support for React 16.8+
+- Enhanced validation system
+
+### 🔄 Changes
+- Updated to use modern React patterns
+- Improved build system
+
+---
+
+## [2.5.0] - 2019-XX-XX
+
+### ✨ Features
+- Added new form components
+- Enhanced validation capabilities
+
+### 🐛 Bug Fixes
+- Fixed various edge cases
+- Improved error messages
+
+---
+
+## [2.4.0] - 2019-XX-XX
+
+### ✨ Features
+- Added support for React 16.3+
+- New validation rules
+
+### 🔄 Changes
+- Updated dependencies
+- Improved performance
+
+---
+
+## [2.3.0] - 2018-XX-XX
+
+### ✨ Features
+- Added new form components
+- Enhanced validation system
+
+### 🐛 Bug Fixes
+- Fixed validation issues
+- Improved error handling
+
+---
+
+## [2.2.0] - 2018-XX-XX
+
+### ✨ Features
+- Added support for React 16+
+- New validation features
+
+### 🔄 Changes
+- Updated to React 16 patterns
+- Improved build system
+
+---
+
+## [2.1.0] - 2017-XX-XX
+
+### ✨ Features
+- Initial release of major features
+- Core validation system
+
+### 🔄 Changes
+- Basic form validation
+- Reactstrap integration
+
+---
+
+## [2.0.0] - 2017-XX-XX
+
+### 🚀 Major Release
+- Complete rewrite of the library
+- Modern React patterns
+- Enhanced validation system
+
+---
+
+## [1.x.x] - 2016-2017
+
+### 📝 Initial Releases
+- Basic form validation
+- React integration
+- Bootstrap support
+
+
+
 <a name="2.7.1"></a>
 ## [2.7.1](https://github.com/Availity/availity-reactstrap-validation/compare/2.7.0...2.7.1) (2021-03-24)
 

@@ -1,0 +1,60 @@
+# Source files
+src/
+docs/
+
+# Development files
+__test__/
+scripts/
+webpack.*.config.js
+mocha-webpack.opts
+.babelrc
+tsconfig.json
+.eslintrc
+__test__/.eslintrc
+
+# Build artifacts (will be generated)
+lib/
+es/
+types/
+dist/
+build/
+
+# Development dependencies
+node_modules/
+
+# Git files
+.git/
+.gitignore
+
+# CI/CD
+.github/
+.travis.yml
+.coveralls.yml
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+.tmp/
+.nyc_output/
+coverage/

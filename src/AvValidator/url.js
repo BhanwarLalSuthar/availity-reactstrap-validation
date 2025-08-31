@@ -35,7 +35,7 @@ const URL_REGEXP = new RegExp(
   '(?::\\d{2,5})?' +
   // resource path
   '(?:[/?#]\\S*)?' +
-  '$', 'i'
+  '$', 'i',
 );
 
 export default function validate(value, context, { pattern = URL_REGEXP, errorMessage = false } = {}) {

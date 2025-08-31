@@ -1,4 +1,4 @@
-import React from 'react';
+
 import classNames from 'classnames';
 import {Input} from 'reactstrap';
 import AvBaseInput from './AvBaseInput';
@@ -57,7 +57,7 @@ export default class AvInput extends AvBaseInput {
       this.context.FormCtrl.isBad(this.props.name) ? 'is-bad-input' : null,
       hasError ? 'av-invalid' : 'av-valid',
       touched && hasError && 'is-invalid',
-      attributes.type === 'checkbox' && touched && hasError && 'was-validated'
+      attributes.type === 'checkbox' && touched && hasError && 'was-validated',
     );
 
     const value = this.getViewValue();

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import isUndefined from 'lodash/isUndefined';
@@ -70,22 +70,23 @@ export default class AvRadioGroup extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.value = this.props.value || this.getDefaultValue().value;
     this.setState({ value: this.value });
     this.updateValidations();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.name !== this.props.name) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.name !== this.props.name) {
       this.context.FormCtrl.unregister(this);
+      this.context.FormCtrl.register(this, this.update.bind(this));
     }
-    if (nextProps.value !== this.props.value) {
-      this.value = nextProps.value;
-      this.setState({ value: nextProps.value });
+    if (prevProps.value !== this.props.value) {
+      this.value = this.props.value;
+      this.setState({ value: this.props.value });
     }
-    if (!isEqual(nextProps, this.props)) {
-      this.updateValidations(nextProps);
+    if (!isEqual(this.props, prevProps)) {
+      this.updateValidations(this.props);
     }
   }
 
@@ -200,12 +201,12 @@ export default class AvRadioGroup extends Component {
         : 'is-pristine',
       this.context.FormCtrl.isBad(this.props.name) ? 'is-bad-input' : null,
       hasError ? 'av-invalid' : 'av-valid',
-      touched && hasError && 'is-invalid'
+      touched && hasError && 'is-invalid',
     );
 
     const groupClass = classNames(
       attributes.className,
-      touched && hasError && 'was-validated'
+      touched && hasError && 'was-validated',
     );
 
     return (

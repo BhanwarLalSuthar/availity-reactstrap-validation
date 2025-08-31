@@ -1,6 +1,21 @@
 {
-  "presets": ["es2015-loose", "stage-0", "react"],
-  "plugins": ["transform-runtime", "transform-proto-to-assign", "transform-class-properties"],
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "20",
+        "browsers": [">0.2%", "not dead", "not op_mini all"]
+      },
+      "useBuiltIns": "usage",
+      "corejs": 3
+    }],
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-class-properties"
+  ],
   "env": {
     "test": {
       "plugins": [
@@ -9,6 +24,16 @@
             "**/*.spec.js",
             ".tmp/**/*"
           ]
+        }]
+      ]
+    },
+    "es": {
+      "presets": [
+        ["@babel/preset-env", {
+          "modules": false,
+          "targets": {
+            "browsers": [">0.2%", "not dead", "not op_mini all"]
+          }
         }]
       ]
     }

@@ -30,7 +30,7 @@ export default class AvBaseInput extends Component {
     validationEvent: PropTypes.oneOfType([
       PropTypes.oneOf(['', 'onInput', 'onChange', 'onBlur', 'onFocus']),
       PropTypes.arrayOf(
-        PropTypes.oneOf(['onInput', 'onChange', 'onBlur', 'onFocus'])
+        PropTypes.oneOf(['onInput', 'onChange', 'onBlur', 'onFocus']),
       ),
     ]),
     validate: PropTypes.object,
@@ -77,46 +77,44 @@ export default class AvBaseInput extends Component {
     this.validate = this.validate.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.value = this.props.value || this.getDefaultValue();
     this.setState({ value: this.value });
     this.updateValidations();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.name !== this.props.name) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.name !== this.props.name) {
       this.context.FormCtrl.unregister(this);
+      this.context.FormCtrl.register(this);
     }
-    if (nextProps.type === 'checkbox') {
-      if (nextProps.checked !== this.props.checked) {
-        if (nextProps.checked) {
-          this.value = nextProps.trueValue;
+    
+    if (prevProps.type === 'checkbox') {
+      if (this.props.checked !== prevProps.checked) {
+        if (this.props.checked) {
+          this.value = this.props.trueValue;
         } else {
-          this.value = nextProps.falseValue;
+          this.value = this.props.falseValue;
         }
         this.setState({ value: this.value });
       }
     } else {
-      if (nextProps.multiple !== this.props.multiple) {
-        this.value = nextProps.multiple ? [] : '';
+      if (this.props.multiple !== prevProps.multiple) {
+        this.value = this.props.multiple ? [] : '';
         this.setState({ value: this.value });
       }
-      if (nextProps.value !== this.props.value) {
-        this.value = nextProps.value;
-        this.setState({ value: nextProps.value });
+      if (this.props.value !== prevProps.value) {
+        this.value = this.props.value;
+        this.setState({ value: this.props.value });
       }
     }
 
-    if (!isEqual(nextProps, this.props)) {
-      this.updateValidations(nextProps);
+    if (!isEqual(this.props, prevProps)) {
+      this.updateValidations(this.props);
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.name !== this.props.name) {
-      this.context.FormCtrl.register(this);
-    }
-  }
+
 
   componentWillUnmount() {
     this.context.FormCtrl.unregister(this);
@@ -127,7 +125,7 @@ export default class AvBaseInput extends Component {
     if (badInput !== this.context.FormCtrl.isBad(this.props.name)) {
       this.context.FormCtrl.setBad(
         this.props.name,
-        badInput
+        badInput,
       );
       this.validate();
     }

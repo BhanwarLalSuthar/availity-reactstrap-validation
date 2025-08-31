@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/AvValidator/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;iBAAiB,QAAQ;sBACH,aAAa;kBACjB,SAAS;kBACT,SAAS;gBACX,OAAO;sBACD,aAAa;uBACZ,cAAc;gBACrB,OAAO;sBACD,aAAa;uBACZ,cAAc;mBAClB,UAAU;gBACb,OAAO;oBACH,WAAW;kBACb,SAAS;qBACN,YAAY;iBAChB,QAAQ;gBACT,OAAO"}

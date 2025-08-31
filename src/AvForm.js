@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PropTypes from 'prop-types';
 import InputContainer from './AvInputContainer';
 import AvValidator from './AvValidator';
@@ -155,10 +155,8 @@ export default class AvForm extends InputContainer {
     this._isMounted = false;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this._isMounted = true;
-    super.componentWillMount();
-
     this._validators = {};
   }
 
@@ -201,7 +199,7 @@ export default class AvForm extends InputContainer {
     const classes = classNames(
       className,
       this.state.submitted ? 'av-submitted' : false,
-      Object.keys(this.state.invalidInputs).length > 0 ? 'av-invalid' : 'av-valid'
+      Object.keys(this.state.invalidInputs).length > 0 ? 'av-invalid' : 'av-valid',
     );
 
     if (Tag !== 'form' && Tag !== Form) {
@@ -423,7 +421,7 @@ export default class AvForm extends InputContainer {
 
     for (const inputName in this._inputs) {
       /* istanbul ignore else  */
-      if (this._inputs.hasOwnProperty(inputName)) {
+      if (Object.prototype.hasOwnProperty.call(this._inputs, inputName)) {
         const valid = await this.validateOne(inputName, context, update);
         if (!valid) {
           isValid = false;
@@ -461,7 +459,7 @@ export default class AvForm extends InputContainer {
 
       for (const rule in ruleProp) {
         /* istanbul ignore else  */
-        if (ruleProp.hasOwnProperty(rule)) {
+        if (Object.prototype.hasOwnProperty.call(ruleProp, rule)) {
           let ruleResult;
 
           const promise = new Promise((resolve, reject) => {

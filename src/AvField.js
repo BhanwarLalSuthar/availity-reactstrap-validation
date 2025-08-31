@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import AvInput from './AvInput';
 import AvGroup from './AvGroup';
 import AvFeedback from './AvFeedback';
-import {Col, FormText, Label, CustomInput} from 'reactstrap';
+import {Col, FormText, Label} from 'reactstrap';
 
 const colSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -101,13 +101,7 @@ export default class AvField extends Component {
     const inputRow = row ? <Col {...col}>{input}{feedback}{help}</Col> : input;
     const check = attributes.type === 'checkbox';
 
-    if (
-      (check || attributes.type === 'radio' || attributes.type === 'switch') &&
-      (attributes.tag === CustomInput ||
-        (Array.isArray(attributes.tag) && attributes.tag[0] === CustomInput))
-    ) {
-      return <AvGroup className="mb-0"><AvInput {...this.props}>{feedback}{help}</AvInput></AvGroup>;
-    }
+
 
     return (
       <AvGroup check={check} disabled={disabled} row={row} {...groupAttrs}>

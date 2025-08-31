@@ -1,41 +1,46 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var webpackConfig = {
+const webpackConfig = {
   target: 'node',
+  mode: 'development',
   context: path.join(__dirname, './src'),
-  devtool: '#cheap-module-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
     'availity-reactstrap-validation': ['./index.js']
   },
   node: {
-    fs: 'empty',
+    __dirname: false,
+    __filename: false,
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': 'test'
+    }),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(json)$/,
-        loaders: [
-          'json-loader?cacheDirectory',
-        ],
+        type: 'json',
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: [
-          'babel-loader?cacheDirectory',
-        ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
       },
     ],
   },
   resolve: {
     alias: {
-      'availity-reactstrap-validation': path.resolve('./src'),
+      'availity-reactstrap-validation': path.resolve(__dirname, 'src'),
     },
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
   },
   externals: {
     'react/lib/ExecutionEnvironment': true,

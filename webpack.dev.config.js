@@ -1,15 +1,15 @@
-var path = require('path');
-var webpack = require('webpack');
-var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
-var env = process.env.WEBPACK_BUILD || 'development';
+const path = require('path');
+const webpack = require('webpack');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const env = process.env.WEBPACK_BUILD || 'development';
 
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpackDevConfig = require('./webpack.base.config')('development');
-var webpackProdConfig = require('./webpack.base.config')('production');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpackDevConfig = require('./webpack.base.config')('development');
+const webpackProdConfig = require('./webpack.base.config')('production');
 
-var paths = [
+const paths = [
   '/',
   '/components/',
   '/components/validators/',
@@ -18,12 +18,13 @@ var paths = [
   '/404.html',
 ];
 
-var basepath = env === 'production' ? process.env.BASEPATH || '/availity-reactstrap-validation/' : '/';
+const basepath = env === 'production' ? process.env.BASEPATH || '/availity-reactstrap-validation/' : '/';
 
-var config = [{
+const config = [{
+  mode: env === 'production' ? 'production' : 'development',
   devtool: 'source-map',
   devServer: {
-    contentBase: './build',
+    static: './build',
     stats: {
       chunks: false,
     },
@@ -32,52 +33,61 @@ var config = [{
     main: './docs/lib/app.js',
   },
   node: {
-    fs: 'empty',
+    __dirname: false,
+    __filename: false,
   },
   output: {
     filename: 'bundle.js',
     publicPath: basepath,
-    path: './build',
-    libraryTarget: 'umd',
+    path: path.resolve(__dirname, 'build'),
+    library: {
+      type: 'umd',
+    },
+    clean: true,
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
-    new CopyWebpackPlugin([{ from: './docs/static', to: 'assets' }]),
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{ from: './docs/static', to: 'assets' }]
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new StaticSiteGeneratorPlugin('main', paths, {basename: basepath}),
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('/assets/style.css'),
+    new MiniCssExtractPlugin({
+      filename: '/assets/style.css'
+    }),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(json)$/,
-        loaders: [
-          'json-loader?cacheDirectory',
-        ],
+        type: 'json',
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: [
-          'babel-loader?cacheDirectory',
-        ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       'bootstrap-css': path.join(__dirname,'node_modules/bootstrap/dist/css/bootstrap.css'),
-      'availity-reactstrap-validation': path.resolve('./src'),
+      'availity-reactstrap-validation': path.resolve(__dirname, 'src'),
     },
   },
 }];
@@ -85,16 +95,6 @@ var config = [{
 if (env === 'development') {
   config.push(webpackDevConfig);
   config.push(webpackProdConfig);
-} else {
-  config[0].plugins.push(new webpack.optimize.UglifyJsPlugin(
-    {
-      minimize: true,
-      compress: {
-        warnings: false,
-      },
-      mangle: true,
-    }
-  ));
 }
 
 module.exports = config;
